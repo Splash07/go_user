@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  annotations:
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/student/
+            backend:
+              serviceName: thangle-svc
+              servicePort: 9090

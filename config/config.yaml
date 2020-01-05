@@ -1,0 +1,8 @@
+MongoDB:
+  Uri: "mongodb+srv://dylannguyen:root123@clustergolangclass-ykxin.mongodb.net/test?retryWrites=true&w=majority"
+  HostName: "clustergolangclass-ykxin.mongodb.net"
+  Username: "dylannguyen"
+  Password: "root123"
+
+JWTSeret:
+  JWTEncodeKey: mysecret1234
