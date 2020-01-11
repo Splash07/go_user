@@ -27,9 +27,7 @@ func Test() interface{} {
 }
 
 func init() {
-
 	connect()
-
 }
 
 func insertNumber() interface{} {
