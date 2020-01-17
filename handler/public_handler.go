@@ -12,10 +12,6 @@ func HealthCheck(c echo.Context) error {
 	return c.String(http.StatusOK, "OK")
 }
 
-func TestDB(c echo.Context) error {
-	return c.JSON(http.StatusOK, db.Test)
-}
-
 func RegisterUser(c echo.Context) error {
 	var user model.User
 	if err := c.Bind(&user); err != nil {

@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"time"
 
@@ -19,12 +18,6 @@ const (
 	DbName  = "User"
 	ColName = "user"
 )
-
-func Test() interface{} {
-	//
-	fmt.Println("connect & insert db")
-	return insertNumber()
-}
 
 func init() {
 	connect()
