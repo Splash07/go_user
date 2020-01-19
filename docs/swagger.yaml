@@ -1,0 +1,167 @@
+basePath: /api/user/v1/
+definitions:
+  model.Error:
+    properties:
+      code:
+        type: integer
+      msg:
+        type: string
+    type: object
+  model.LoginReq:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  model.LoginResp:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      token:
+        type: string
+    type: object
+  model.User:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+    type: object
+  model.UserUpdateReq:
+    properties:
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      password:
+        type: string
+    type: object
+host: localhost:9090
+info:
+  contact: {}
+  description: This documentation contains APIs of Go User
+  license: {}
+  termsOfService: http://swagger.io/terms/
+  title: Go User API
+  version: "1.0"
+paths:
+  /private/user:
+    put:
+      consumes:
+      - application/json
+      description: accept JSON User payload (excluding ID) and JWT token to update
+        the user information
+      parameters:
+      - description: User model excluding ID
+        in: body
+        name: userUpdateRequest
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserUpdateReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Updater a User record
+  /public/health:
+    get:
+      consumes:
+      - application/json
+      description: send a small request and check the response
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Check API's health
+  /public/user/login:
+    patch:
+      consumes:
+      - application/json
+      description: get JWT Token with email and password as payload
+      parameters:
+      - description: Login Request containing email and password
+        in: body
+        name: loginRequest
+        required: true
+        schema:
+          $ref: '#/definitions/model.LoginReq'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.LoginResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Login and obtain JWT Token
+  /public/user/register:
+    post:
+      consumes:
+      - application/json
+      description: create new User model
+      parameters:
+      - description: User model excluding ID
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      summary: Register for a new user
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

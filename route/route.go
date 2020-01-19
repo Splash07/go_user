@@ -10,7 +10,6 @@ import (
 
 func All(e *echo.Echo) {
 	Private(e)
-	Staff(e)
 	Public(e)
 }
 
@@ -22,12 +21,6 @@ func Private(e *echo.Echo) {
 	}
 	g.Use(middleware.JWTWithConfig(JWTConfig))
 	g.PUT("/user", handler.UpdateUser)
-}
-
-func Staff(e *echo.Echo) {
-	//g := e.Group("/api/user/v1/staff")
-	//g.POST("/student", handler.AddStudent)
-	//g.PUT("/student", handler.UpdateStudent)
 }
 
 func Public(e *echo.Echo) {
